@@ -1,0 +1,1290 @@
+{
+    "__version": "0.0.4",
+    "__comments": [
+        "Author: Stijn Vermoesen",
+        "Creation date: 20/09/2017",
+        "JSON file containing the vCenter inventory and configuration. This file is used to configure the foundation vCenter servers.",
+        "Items included:",
+        "   - Folders",
+        "   - Roles",
+        "   - Permissions",
+        "   - vCenters",
+        "   - Clusters",
+        "   - DvSwitches",
+        "   - Datastoreclusters",
+        "   - vCenter & Hostlevel (advanced) settings",
+    ],
+    "Folders": [
+        {
+            "Name": "000",
+            "Type": "VM",
+            "level": "2",
+            "Parent": []
+        },
+        {
+            "Name": "001",
+            "Type": "VM",
+            "level": "2",
+            "Parent": []
+        },
+        {
+            "Name": "002",
+            "Type": "VM",
+            "level": "2",
+            "Parent": []
+        },
+        {
+            "Name": "003",
+            "Type": "VM",
+            "level": "2",
+            "Parent": []
+        },
+        {
+            "Name": "004",
+            "Type": "VM",
+            "level": "2",
+            "Parent": []
+        },
+        {
+            "Name": "005",
+            "Type": "VM",
+            "level": "2",
+            "Parent": []
+        },
+        {
+            "Name": "01. Windows",
+            "Type": "VM",
+            "level": "3",
+            "Parent": [
+                "000",
+                "001",
+                "002",
+                "003",
+                "004",
+                "005"
+            ]
+        },
+        {
+            "Name": "02. Linux",
+            "Type": "VM",
+            "level": "3",
+            "Parent": [
+                "000",
+                "001",
+                "002",
+                "003",
+                "004",
+                "005"
+            ]
+        },
+        {
+            "Name": "03. Network",
+            "Type": "VM",
+            "level": "3",
+            "Parent": [
+                "000"
+            ]
+        },
+        {
+            "Name": "04. Storage",
+            "Type": "VM",
+            "level": "3",
+            "Parent": [
+                "000"
+            ]
+        },
+        {
+            "Name": "05. Cloud",
+            "Type": "VM",
+            "level": "3",
+            "Parent": [
+                "000"
+            ]
+        },
+        {
+            "Name": "06. IAM",
+            "Type": "VM",
+            "level": "3",
+            "Parent": [
+                "001"
+            ]
+        },
+        {
+            "Name": "07. SCCM",
+            "Type": "VM",
+            "level": "3",
+            "Parent": [
+                "002"
+            ]
+        },
+        {
+            "Name": "08. Security",
+            "Type": "VM",
+            "level": "3",
+            "Parent": [
+                "003"
+            ]
+        }
+    ],
+    "Roles": [
+        {
+            "Name": "Homelab - VMadmin",
+            "PrivilegeIDs": [
+                "System.Anonymous",
+                "System.View",
+                "System.Read",
+                "VirtualMachine.Interact.PowerOn",
+                "VirtualMachine.Interact.PowerOff",
+                "VirtualMachine.Interact.Reset",
+                "VirtualMachine.Interact.AnswerQuestion",
+                "VirtualMachine.Interact.ConsoleInteract",
+                "VirtualMachine.Interact.DeviceConnection",
+                "VirtualMachine.Interact.SetCDMedia",
+                "VirtualMachine.Interact.SetFloppyMedia",
+                "VirtualMachine.Interact.ToolsInstall"
+            ]
+        },
+        {
+            "Name": "Homelab - VMadminNoReboot",
+            "PrivilegeIDs": [
+                "System.Anonymous",
+                "System.View",
+                "System.Read",
+                "VirtualMachine.Interact.PowerOn",     
+                "VirtualMachine.Interact.AnswerQuestion",
+                "VirtualMachine.Interact.ConsoleInteract",
+                "VirtualMachine.Interact.DeviceConnection",
+                "VirtualMachine.Interact.SetCDMedia",
+                "VirtualMachine.Interact.SetFloppyMedia",
+                "VirtualMachine.Interact.ToolsInstall"
+            ]
+        },
+        {
+            "Name": "Homelab - VMware LogInsight user",
+            "PrivilegeIDs": [
+                "System.Anonymous",
+                "System.View",
+                "System.Read"
+            ]
+        },
+        {
+            "Name": "Homelab - TSM",
+            "PrivilegeIDs": [
+                "System.Anonymous",
+                "System.View",
+                "System.Read",
+                "Global.LogEvent",
+                "Global.CancelTask",
+                "Global.Licenses",
+                "Global.Settings",
+                "Datastore.Delete",
+                "Datastore.Browse",
+                "Datastore.DeleteFile",
+                "Datastore.FileManagement",
+                "Datastore.AllocateSpace",
+                "Datastore.UpdateVirtualMachineFiles",
+                "Network.Config",
+                "Network.Assign",
+                "VirtualMachine.Inventory.Create",
+                "VirtualMachine.Inventory.Register",
+                "VirtualMachine.Inventory.Delete",
+                "VirtualMachine.Inventory.Unregister",
+                "VirtualMachine.Interact.PowerOn",
+                "VirtualMachine.Interact.PowerOff",
+                "VirtualMachine.Interact.Reset",
+                "VirtualMachine.Config.Rename",
+                "VirtualMachine.Config.AddExistingDisk",
+                "VirtualMachine.Config.AddNewDisk",
+                "VirtualMachine.Config.RemoveDisk",
+                "VirtualMachine.Config.RawDevice",
+                "VirtualMachine.Config.HostUSBDevice",
+                "VirtualMachine.Config.CPUCount",
+                "VirtualMachine.Config.Memory",
+                "VirtualMachine.Config.AddRemoveDevice",
+                "VirtualMachine.Config.EditDevice",
+                "VirtualMachine.Config.Settings",
+                "VirtualMachine.Config.Resource",
+                "VirtualMachine.Config.UpgradeVirtualHardware",
+                "VirtualMachine.Config.ResetGuestInfo",
+                "VirtualMachine.Config.AdvancedConfig",
+                "VirtualMachine.Config.DiskLease",
+                "VirtualMachine.Config.SwapPlacement",
+                "VirtualMachine.Config.DiskExtend",
+                "VirtualMachine.Config.ChangeTracking",
+                "VirtualMachine.Config.ReloadFromPath",
+                "VirtualMachine.State.CreateSnapshot",
+                "VirtualMachine.State.RevertToSnapshot",
+                "VirtualMachine.State.RemoveSnapshot",
+                "VirtualMachine.Provisioning.DiskRandomAccess",
+                "VirtualMachine.Provisioning.DiskRandomRead",
+                "VirtualMachine.Provisioning.GetVmFiles",
+                "Resource.AssignVMToPool",
+                "Task.Create",
+                "Task.Update",
+                "Sessions.ValidateSession"
+            ]
+        },
+        {
+            "Name": "Homelab - Veeam MP User",
+            "PrivilegeIDs": [
+                "System.Anonymous",
+                "System.View",
+                "System.Read",
+                "Datastore.Browse",
+                "Datastore.Config",
+                "Host.Cim.CimInteraction"
+            ]
+        },
+        {
+            "Name": "Homelab - Netbackup",
+            "PrivilegeIDs": [
+                "System.Anonymous",
+                "System.View",
+                "System.Read",
+                "Global.ManageCustomFields",
+                "Global.SetCustomField",
+                "Global.LogEvent",
+                "Global.CancelTask",
+                "Global.Licenses",
+                "Global.Settings",
+                "Global.DisableMethods",
+                "Global.EnableMethods",
+                "Global.GlobalTag",
+                "Datastore.Browse",
+                "Datastore.FileManagement",
+                "Datastore.AllocateSpace",
+                "Datastore.Config",
+                "Datastore.UpdateVirtualMachineFiles",
+                "Datastore.UpdateVirtualMachineMetadata",
+                "Network.Assign",
+                "Host.Config.Storage",
+                "Host.Config.AdvancedConfig",
+                "VirtualMachine.Inventory.Create",
+                "VirtualMachine.Inventory.CreateFromExisting",
+                "VirtualMachine.Inventory.Register",
+                "VirtualMachine.Inventory.Delete",
+                "VirtualMachine.Inventory.Unregister",
+                "VirtualMachine.Interact.PowerOn",
+                "VirtualMachine.Interact.PowerOff",
+                "VirtualMachine.Config.Annotation",
+                "VirtualMachine.Config.AddExistingDisk",
+                "VirtualMachine.Config.AddNewDisk",
+                "VirtualMachine.Config.RemoveDisk",
+                "VirtualMachine.Config.RawDevice",
+                "VirtualMachine.Config.AddRemoveDevice",
+                "VirtualMachine.Config.EditDevice",
+                "VirtualMachine.Config.Settings",
+                "VirtualMachine.Config.Resource",
+                "VirtualMachine.Config.AdvancedConfig",
+                "VirtualMachine.Config.DiskLease",
+                "VirtualMachine.Config.SwapPlacement",
+                "VirtualMachine.Config.ChangeTracking",
+                "VirtualMachine.Config.Unlock",
+                "VirtualMachine.State.CreateSnapshot",
+                "VirtualMachine.State.RevertToSnapshot",
+                "VirtualMachine.State.RemoveSnapshot",
+                "VirtualMachine.Provisioning.DiskRandomAccess",
+                "VirtualMachine.Provisioning.DiskRandomRead",
+                "VirtualMachine.Provisioning.GetVmFiles",
+                "Resource.AssignVMToPool",
+                "Resource.AssignVAppToPool",
+                "Task.Create",
+                "Task.Update",
+                "VApp.AssignVM",
+                "VApp.AssignResourcePool",
+                "VApp.AssignVApp",
+                "VApp.Create",
+                "InventoryService.Tagging.AttachTag"
+            ]
+        },
+        {
+            "Name": "Homelab - VmConsoleUser",
+            "PrivilegeIDs": [
+                "System.Anonymous",
+                "System.View",
+                "System.Read",
+                "VirtualMachine.Interact.ConsoleInteract"
+            ]
+        },
+        {
+            "Name": "Homelab - BrowseDatastore",
+            "PrivilegeIDs": [
+                "System.Anonymous",
+                "System.View",
+                "System.Read",
+                "Datastore.Browse"
+            ]
+        }
+    ],
+    "Permissions": [
+        {
+            "InventoryItem": "vCenter",
+            "ItemType": "vCenter",
+            "Parent": "",
+            "level": "0",
+            "ItemPermissions": [
+                {
+                    "AdGroup": "OPS_000_VMware.vCenter_adm",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "admin",
+                    "Propagate": true
+                },
+                {
+                    "AdGroup": "OPS_000_VMware.superadm",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "admin",
+                    "Propagate": true
+                },
+                {
+                    "AdGroup": "OPS_000_VMware.ReadOnly",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": true
+                },
+                {
+                    "AdGroup": "OPS_000_VMware.LogInsight_vCenterIntegration",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": true
+                },
+                {
+                    "AdGroup": "OPS_000_VMware.VeeamMP_user",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - Veeam MP User",
+                    "Propagate": true
+                },
+                {
+                    "AdGroup": "DES_000_VMware.vCenter_adm",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "admin",
+                    "Propagate": true
+                },
+                {
+                    "AdGroup": "DES_000_VMware.superadm",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "admin",
+                    "Propagate": true
+                },
+                {
+                    "AdGroup": "DES_000_VMware.ReadOnly",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": true
+                },
+                {
+                    "AdGroup": "DES_000_VMware.LogInsight_vCenterIntegration",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": true
+                },
+                {
+                    "AdGroup": "DES_000_VMware.VeeamMP_user",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - Veeam MP User",
+                    "Propagate": true
+                }
+            ]
+        },
+        {
+            "InventoryItem": "Datacenter",
+            "ItemType": "Datacenter",
+            "Parent": "vCenter",
+            "level": "1",
+            "ItemPermissions": [
+                {
+                    "AdGroup": "OPS_000_WINDOWS.vm_adm",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "OPS_000_UNIX.vm_adm",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "OPS_001_WINDOWS.vm_adm",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "OPS_001_UNIX.vm_adm",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "OPS_002_WINDOWS.vm_adm",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "OPS_002_UNIX.vm_adm",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "OPS_003_WINDOWS.vm_adm",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "OPS_003_UNIX.vm_adm",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "OPS_001_IAM.vm_adm",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "OPS_001_IAM.NoReboot",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "OPS_000_STORAGE.vm_adm",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "OPS_000_Cloud.vm_adm",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "OPS_003_GSOC.vm_adm",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_000_WINDOWS.vm_adm",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_000_UNIX.vm_adm",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_001_WINDOWS.vm_adm",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_001_UNIX.vm_adm",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_002_WINDOWS.vm_adm",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_002_UNIX.vm_adm",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_003_WINDOWS.vm_adm",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_003_UNIX.vm_adm",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_001_IAM.vm_adm",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_001_IAM.NoReboot",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_000_STORAGE.vm_adm",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_000_Cloud.vm_adm",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_003_GSOC.vm_adm",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                }
+            ]
+        },
+        {
+            "InventoryItem": "Cluster",
+            "ItemType": "Cluster",
+            "Parent": "Datacenter",
+            "level": "",
+            "ItemPermissions": []
+        },
+        {
+            "InventoryItem": "000",
+            "ItemType": "VmFolder",
+            "Parent": "Datacenter",
+            "level": "2",
+            "ItemPermissions": [
+                {
+                    "AdGroup": "OPS_000_WINDOWS.vm_adm",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "OPS_000_UNIX.vm_adm",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "OPS_000_Network.vm_adm",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "OPS_001_IAM.vm_adm",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "OPS_001_IAM.NoReboot",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "OPS_000_STORAGE.vm_adm",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "OPS_000_Cloud.vm_adm",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_000_WINDOWS.vm_adm",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_000_UNIX.vm_adm",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_000_Network.vm_adm",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_000_STORAGE.vm_adm",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_000_Cloud.vm_adm",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                }                
+            ]
+        },
+        {
+            "InventoryItem": "01. Windows",
+            "ItemType": "VmFolder",
+            "Parent": "000",
+            "level": "3",
+            "ItemPermissions": [
+                {
+                    "AdGroup": "OPS_000_WINDOWS.vm_adm",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadmin",
+                    "Propagate": true
+                },
+                {
+                    "AdGroup": "DES_000_WINDOWS.vm_adm",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadmin",
+                    "Propagate": true
+                }
+            ]
+        },
+        {
+            "InventoryItem": "02. Linux",
+            "ItemType": "VmFolder",
+            "Parent": "000",
+            "level": "3",
+            "ItemPermissions": [
+                {
+                    "AdGroup": "OPS_000_UNIX.vm_adm",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadmin",
+                    "Propagate": true
+                },
+                {
+                    "AdGroup": "DES_000_UNIX.vm_adm",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadmin",
+                    "Propagate": true
+                }
+            ]
+        },
+        {
+            "InventoryItem": "03. Network",
+            "ItemType": "VmFolder",
+            "Parent": "000",
+            "level": "3",
+            "ItemPermissions": [
+                {
+                    "AdGroup": "OPS_000_Network.vm_adm",
+                    "environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadmin",
+                    "Propagate": true
+                },
+                {
+                    "AdGroup": "DES_000_Network.vm_adm",
+                    "environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadmin",
+                    "Propagate": true
+                }
+            ]
+        },
+        {
+            "InventoryItem": "04. Storage",
+            "ItemType": "VmFolder",
+            "Parent": "000",
+            "level": "3",
+            "ItemPermissions": [
+                {
+                    "AdGroup": "OPS_000_STORAGE.vm_adm",
+                    "environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadmin",
+                    "Propagate": true
+                },
+                {
+                    "AdGroup": "DES_000_STORAGE.vm_adm",
+                    "environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadmin",
+                    "Propagate": true
+                },
+                {
+                    "AdGroup": "OPS_000_WINDOWS.vm_adm",
+                    "environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadmin",
+                    "Propagate": true
+                },
+                {
+                    "AdGroup": "DES_000_WINDOWS.vm_adm",
+                    "environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadmin",
+                    "Propagate": true
+                }
+            ]
+        },
+        {
+            "InventoryItem": "001",
+            "ItemType": "VmFolder",
+            "Parent": "Datacenter",
+            "level": "2",
+            "ItemPermissions": [
+                {
+                    "AdGroup": "OPS_001_IAM.vm_adm",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "ReadOnly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "OPS_001_IAM.NoReboot",
+                    "Environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "ReadOnly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_001_IAM.vm_adm",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "ReadOnly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_001_IAM.NoReboot",
+                    "Environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "ReadOnly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "OPS_000_Network.vm_adm",
+                    "environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_000_Network.vm_adm",
+                    "environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                }
+            ]
+        },
+        {
+            "InventoryItem": "01. Windows",
+            "ItemType": "VmFolder",
+            "Parent": "001",
+            "level": "3",
+            "ItemPermissions": []
+        },
+        {
+            "InventoryItem": "02. Linux",
+            "ItemType": "VmFolder",
+            "Parent": "001",
+            "level": "3",
+            "ItemPermissions": []
+        },
+        {
+            "InventoryItem": "06. IAM",
+            "ItemType": "VmFolder",
+            "Parent": "001",
+            "level": "3",
+            "ItemPermissions": [
+                {
+                    "AdGroup": "OPS_001_IAM.vm_adm",
+                    "environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadmin",
+                    "Propagate": true
+                },
+                {
+                    "AdGroup": "OPS_001_IAM.NoReboot",
+                    "environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadminNoReboot",
+                    "Propagate": true
+                },
+                {
+                    "AdGroup": "DES_001_IAM.vm_adm",
+                    "environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadmin",
+                    "Propagate": true
+                },
+                {
+                    "AdGroup": "DES_001_IAM.NoReboot",
+                    "environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadminNoReboot",
+                    "Propagate": true
+                }
+            ]
+        },
+        {
+            "InventoryItem": "002",
+            "ItemType": "VmFolder",
+            "Parent": "Datacenter",
+            "level": "2",
+            "ItemPermissions": [
+                {
+                    "AdGroup": "OPS_002_WINDOWS.vm_adm",
+                    "environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "OPS_002_UNIX.vm_adm",
+                    "environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_002_WINDOWS.vm_adm",
+                    "environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_002_UNIX.vm_adm",
+                    "environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                }
+            ]
+        },
+        {
+            "InventoryItem": "01. Windows",
+            "ItemType": "VmFolder",
+            "Parent": "002",
+            "level": "3",
+            "ItemPermissions": [
+                {
+                    "AdGroup": "OPS_002_WINDOWS.vm_adm",
+                    "environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadmin",
+                    "Propagate": true
+                },
+                {
+                    "AdGroup": "DES_002_WINDOWS.vm_adm",
+                    "environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadmin",
+                    "Propagate": true
+                }
+            ]
+        },
+        {
+            "InventoryItem": "02. Linux",
+            "ItemType": "VmFolder",
+            "Parent": "002",
+            "level": "3",
+            "ItemPermissions": [
+                {
+                    "AdGroup": "OPS_002_UNIX.vm_adm",
+                    "environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadmin",
+                    "Propagate": true
+                },
+                {
+                    "AdGroup": "DES_002_UNIX.vm_adm",
+                    "environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadmin",
+                    "Propagate": true
+                }
+            ]
+        },
+        {
+            "InventoryItem": "07. SCCM",
+            "ItemType": "VmFolder",
+            "Parent": "002",
+            "level": "3",
+            "ItemPermissions": [
+                {
+                    "AdGroup": "OPS_002_SCCM.vm_adm",
+                    "environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadmin",
+                    "Propagate": true
+                },
+                {
+                    "AdGroup": "DES_002_SCCM.vm_adm",
+                    "environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadmin",
+                    "Propagate": true
+                }
+            ]
+        },
+        {
+            "InventoryItem": "003",
+            "ItemType": "VmFolder",
+            "Parent": "Datacenter",
+            "level": "2",
+            "ItemPermissions": [
+                {
+                    "AdGroup": "OPS_003_WINDOWS.vm_adm",
+                    "environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "OPS_003_UNIX.vm_adm",
+                    "environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },                {
+                    "AdGroup": "OPS_003_GSOC.vm_adm",
+                    "environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_003_WINDOWS.vm_adm",
+                    "environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_003_UNIX.vm_adm",
+                    "environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                },
+                {
+                    "AdGroup": "DES_003_GSOC.vm_adm",
+                    "environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Readonly",
+                    "Propagate": false
+                }
+            ]
+        },
+        {
+            "InventoryItem": "01. Windows",
+            "ItemType": "VmFolder",
+            "Parent": "003",
+            "level": "3",
+            "ItemPermissions": [
+                {
+                    "AdGroup": "OPS_003_WINDOWS.vm_adm",
+                    "environement": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadmin",
+                    "Propagate": true
+                },
+                {
+                    "AdGroup": "DES_003_WINDOWS.vm_adm",
+                    "environement": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadmin",
+                    "Propagate": true
+                }
+            ]
+        },
+        {
+            "InventoryItem": "02. Linux",
+            "ItemType": "VmFolder",
+            "Parent": "003",
+            "level": "3",
+            "ItemPermissions": [
+                {
+                    "AdGroup": "OPS_003_UNIX.vm_adm",
+                    "environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadmin",
+                    "Propagate": true
+                },
+                {
+                    "AdGroup": "DES_003_UNIX.vm_adm",
+                    "environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadmin",
+                    "Propagate": true
+                }
+            ]
+        },
+        {
+            "InventoryItem": "08. Security",
+            "ItemType": "VmFolder",
+            "Parent": "003",
+            "level": "3",
+            "ItemPermissions": [
+                {
+                    "AdGroup": "OPS_003_GSOC.vm_adm",
+                    "environment": "production",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadmin",
+                    "Propagate": true
+                },
+                {
+                    "AdGroup": "DES_003_GSOC.vm_adm",
+                    "environment": "design",
+                    "AdDomain": "homelab",
+                    "Role": "Homelab - VMadmin",
+                    "Propagate": true
+                }
+            ]
+        }
+    ],
+    "vCenters": [
+        {
+            "behkglabvce01": [
+                {
+                    "Datacenter": "HKG",
+                    "Site": "L64",
+                    "Domain": "homelab.local",
+                    "Environment": "production",
+                    "Country": "Belgium",
+                    "PSC": "behkglabvce01.homelab.local",
+                    "vDataCenters": [
+                        "BE-HKG-L64-DES-01"
+                    ],
+                    "DvSwitches": [
+                        {
+                            "Name": "DV-VM-BEHKGL64DES01",
+                            "Datacenter": "BE-HKG-L64-DES-01",
+                            "NumOfUplinks": "2",
+                            "LinkDiscoveryProtocol": "CDP",
+                            "LinkDiscoveryProtocolOperation": "both",
+                            "Version": "6.5.0",
+                            "mtu": "1500",
+                            "vLANgroups": [
+                                {
+                                    "Name": "PG-BEHKGL64DES",
+                                    "Type": "LAN",
+                                    "vlanType": "VLANID",
+                                    "vLANs": "671,672,952,955,959,961",
+                                    "LoadBalancingPolicy": "LoadBalanceLoadBased"
+                                }
+                            ]
+                        }
+                    ],
+                    "Clusters": [
+                        {
+                            "Name": "CL-BEHKGL64DES-001",
+                            "Datacenter": "BE-HKG-L64-DES-01",
+                            "EVCmode": "intel-nehalem",
+                            "HAEnabled": true,
+                            "HAAdmissionControlEnabled": true,
+                            "HAFailoverLevel": "1",
+                            "DrsEnabled": true,
+                            "DrsAutomationLevel": "FullyAutomated"
+                        }
+                    ],
+                    "DatastoreClusters": [
+                        {
+                            "Name": "SC-BEHKGL64DES-GN-001",
+                            "Datacenter": "BE-HKG-L64-DES-01",
+                            "SDRS": true,
+                            "IOLoadBalanceEnabled": false,
+                            "SdrsAutomationLevel": "Disabled"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "examplevcenter": [
+                {
+                    "Datacenter": "",
+                    "Site": "",
+                    "Domain": "",
+                    "Environment": "Design",
+                    "Country": "Belgium",
+                    "PSC": "",
+                    "vDataCenters": [],
+                    "DvSwitches": [
+                        {
+                            "Name": "",
+                            "Datacenter": "",
+                            "NumOfUplinks": "2",
+                            "LinkDiscoveryProtocol": "CDP",
+                            "LinkDiscoveryProtocolOperation": "both",
+                            "Version": "6.5.0",
+                            "mtu": "1500",
+                            "TeamingPolicy": "",
+                            "vLANgroups": [
+                                {
+                                    "Name": "",
+                                    "GroupType": "LAN",
+                                    "vlanType": "VLANID",
+                                    "vLANs": "",
+                                    "LoadBalancingPolicy": "LoadBalanceLoadBased"
+                                },
+                                {
+                                    "Name": "",
+                                    "GroupType": "Backup",
+                                    "vlanType": "VLANID",
+                                    "vLANs": "",
+                                    "LoadBalancingPolicy": "LoadBalanceLoadBased"
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "",
+                            "Datacenter": "",
+                            "NumOfUplinks": "2",
+                            "LinkDiscoveryProtocol": "CDP",
+                            "LinkDiscoveryProtocolOperation": "both",
+                            "Version": "6.5.0",
+                            "mtu": "1500",
+                            "TeamingPolicy": "",
+                            "vLANgroups": [
+                                {
+                                    "Name": "",
+                                    "GroupType": "LAN",
+                                    "vlanType": "VLANID",
+                                    "vLANs": "",
+                                    "LoadBalancingPolicy": "LoadBalanceLoadBased"
+                                },
+                                {
+                                    "Name": "",
+                                    "GroupType": "Backup",
+                                    "vlanType": "VLANID",
+                                    "vLANs": "",
+                                    "LoadBalancingPolicy": "LoadBalanceLoadBased"
+                                }
+                            ]
+                        }
+                    ],
+                    "Clusters": [
+                        {
+                            "Name": "",
+                            "Datacenter": "",
+                            "EVCmode": "intel-nehalem",
+                            "HAEnabled": true,
+                            "HAAdmissionControlEnabled": true,
+                            "HAFailoverLevel": "1",
+                            "HAIsolationResponse": "",
+                            "DrsEnabled": true,
+                            "DrsAutomationLevel": "FullyAutomated"
+                        },
+                        {
+                            "Name": "",
+                            "Datacenter": "",
+                            "EVCmode": "intel-nehalem",
+                            "HAEnabled": true,
+                            "HAAdmissionControlEnabled": true,
+                            "HAFailoverLevel": "1",
+                            "HAIsolationResponse": "",
+                            "DrsEnabled": true,
+                            "DrsAutomationLevel": "FullyAutomated"
+                        }
+                    ],
+                    "DatastoreClusters": [
+                        {
+                            "Name": "",
+                            "Datacenter": "",
+                            "SDRS": true,
+                            "IOLoadBalanceEnabled": false,
+                            "SdrsAutomationLevel": "Disabled"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "Settings": [
+        {
+            "vCenter": [
+                {
+                    "StatisticslevelPastDay": "4",
+                    "StatisticslevelPastWeek": "4",
+                    "StatisticslevelPastMonth": "4",
+                    "StatisticslevelPastYear": "4",
+                    "task_maxAgeEnabled": true,
+                    "task_maxAge": "90",
+                    "event_maxAgeEnabled": true,
+                    "event_maxAge": "90",
+                    "config_log_outputToSyslog": true,
+                    "config_log_level": "info"
+                }
+            ]
+        },
+        {
+            "Host": [
+                {
+                    "syslog.global.loghost": "syslog.homelab.local"
+                }
+            ]
+        }
+    ]
+}
